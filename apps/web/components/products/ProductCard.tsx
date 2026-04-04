@@ -5,7 +5,7 @@ import { useAuth } from "@/context/AuthContext";
 import api from "@/lib/api";
 import { formatPrice } from "@/lib/utils";
 import { Product } from "@/types";
-import { Heart, Share2, ShoppingCart, Star } from "lucide-react";
+import { Heart, MapPin, Share2, ShoppingCart, Sprout, Star, Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -96,7 +96,7 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
 
     const shareData = {
       title: product.name,
-      text: `Check out this amazing ${product.name} from ${product.brand}!`,
+      text: `Check out this fresh ${product.name} from ${product.brand}!`,
       url: window.location.origin + `/products/${product.id}`,
     };
 
@@ -140,9 +140,15 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
     }
   };
 
+  // Format harvest date for display
+  const formatHarvestDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  };
+
   return (
     <Link href={`/products/${product.id}`}>
-      <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 h-full">
+      <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 h-full border-green-100">
         <div
           className={`relative overflow-hidden ${
             isCompact ? "aspect-[4/3]" : "aspect-square"
@@ -176,25 +182,60 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
               Out of Stock
             </Badge>
           )}
+          {/* Organic Badge */}
+          {product.organicCertified && (
+            <Badge
+              className="absolute top-2 right-2 bg-green-600 hover:bg-green-700 text-white"
+            >
+              <Sprout className="h-3 w-3 mr-1" />
+              Organic
+            </Badge>
+          )}
+          {/* Seasonal Badge */}
+          {product.isSeasonal && product.season && (
+            <Badge
+              variant="outline"
+              className="absolute bottom-2 left-2 bg-white/90 text-green-700 border-green-300"
+            >
+              {product.season}
+            </Badge>
+          )}
         </div>
 
         <CardContent className={`space-y-2 ${isCompact ? "p-3" : "p-4"}`}>
           <div className="space-y-1">
             <h3
-              className={`font-semibold line-clamp-2 group-hover:text-primary transition-colors ${
+              className={`font-semibold line-clamp-2 group-hover:text-green-600 transition-colors ${
                 isCompact ? "text-sm" : ""
               }`}
             >
               {product.name || "Unnamed Product"}
             </h3>
             <p
-              className={`text-muted-foreground ${
+              className={`text-muted-foreground flex items-center ${
                 isCompact ? "text-xs" : "text-sm"
               }`}
             >
-              {product.brand || "Unknown Brand"}
+              <Sprout className="h-3 w-3 mr-1" />
+              {product.brand || "Unknown Farm"}
             </p>
           </div>
+
+          {/* Farm Location */}
+          {product.farmLocation && (
+            <div className={`flex items-center text-xs text-muted-foreground ${isCompact ? "text-xs" : ""}`}>
+              <MapPin className="h-3 w-3 mr-1" />
+              {product.farmLocation}
+            </div>
+          )}
+
+          {/* Harvest Date */}
+          {product.harvestDate && (
+            <div className="flex items-center text-xs text-green-600">
+              <Calendar className="h-3 w-3 mr-1" />
+              Harvested: {formatHarvestDate(product.harvestDate)}
+            </div>
+          )}
 
           <div className="flex items-center space-x-1">
             <Star
@@ -222,6 +263,11 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
             >
               {formatPrice(product.price || 0)}
             </span>
+            {product.unitType && (
+              <span className={`text-muted-foreground ${isCompact ? "text-xs" : "text-sm"}`}>
+                /{product.unitType}
+              </span>
+            )}
             {product.originalPrice &&
               product.originalPrice > (product.price || 0) && (
                 <span

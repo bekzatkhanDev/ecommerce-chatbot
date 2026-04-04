@@ -10,9 +10,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "S-TORE - AI-Powered Electronics Shopping",
+  title: "Farm Fresh - Farm-to-Table E-commerce",
   description:
-    "Discover the latest technology products with our AI shopping assistant",
+    "Discover farm-fresh products delivered straight to your table. Support local farmers and enjoy the finest organic, seasonal, and sustainably grown food.",
 };
 
 export default function RootLayout({
