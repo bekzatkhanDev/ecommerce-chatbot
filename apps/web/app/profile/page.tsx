@@ -17,12 +17,12 @@ export default function ProfilePage() {
         <Card className="max-w-md mx-auto text-center">
           <CardContent className="pt-6">
             <User className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-            <h2 className="text-xl font-semibold mb-2">Please Login</h2>
+            <h2 className="text-xl font-semibold mb-2">Пожалуйста, войдите</h2>
             <p className="text-muted-foreground mb-4">
-              You need to be logged in to view your profile.
+              Вам нужно войти в систему, чтобы просмотреть ваш профиль.
             </p>
             <Button asChild>
-              <Link href="/login">Login</Link>
+              <Link href="/login">Войти</Link>
             </Button>
           </CardContent>
         </Card>
@@ -33,9 +33,9 @@ export default function ProfilePage() {
   return (
     <div className="container py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Profile</h1>
+        <h1 className="text-3xl font-bold mb-2">Профиль</h1>
         <p className="text-muted-foreground">
-          Manage your account settings and preferences
+          Управляйте настройками учетной записи и предпочтениями
         </p>
       </div>
 
@@ -44,38 +44,38 @@ export default function ProfilePage() {
         <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Account Information</CardTitle>
+              <CardTitle>Информация об аккаунте</CardTitle>
               <CardDescription>
-                Your basic account details
+                Ваши основные данные учетной записи
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm font-medium text-muted-foreground">
-                    Full Name
+                    Полное имя
                   </label>
                   <p className="text-lg">{user.name}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-muted-foreground">
-                    Email Address
+                    Email адрес
                   </label>
                   <p className="text-lg">{user.email}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-muted-foreground">
-                    Member Since
+                    Участник с
                   </label>
                   <p className="text-lg">{formatDate(user.created_at)}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-muted-foreground">
-                    Account Status
+                    Статус аккаунта
                   </label>
                   <p className="text-lg">
                     <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                      Active
+                      Активен
                     </span>
                   </p>
                 </div>
@@ -85,15 +85,15 @@ export default function ProfilePage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Shopping Preferences</CardTitle>
+              <CardTitle>Предпочтения покупок</CardTitle>
               <CardDescription>
-                Your personalized shopping settings
+                Ваши персонализированные настройки покупок
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
                 <label className="text-sm font-medium text-muted-foreground">
-                  Favorite Categories
+                  Любимые категории
                 </label>
                 <div className="flex flex-wrap gap-2 mt-1">
                   {user.preferences.favoriteCategories.length > 0 ? (
@@ -106,14 +106,14 @@ export default function ProfilePage() {
                       </span>
                     ))
                   ) : (
-                    <p className="text-muted-foreground">No preferences set</p>
+                    <p className="text-muted-foreground">Предпочтения не установлены</p>
                   )}
                 </div>
               </div>
               
               <div>
                 <label className="text-sm font-medium text-muted-foreground">
-                  Price Range
+                  Диапазон цен
                 </label>
                 <p className="text-lg">
                   ${user.preferences.priceRange[0]} - ${user.preferences.priceRange[1]}
@@ -122,7 +122,7 @@ export default function ProfilePage() {
               
               <div>
                 <label className="text-sm font-medium text-muted-foreground">
-                  Favorite Brands
+                  Любимые бренды
                 </label>
                 <div className="flex flex-wrap gap-2 mt-1">
                   {user.preferences.favoriteBrands.length > 0 ? (
@@ -135,7 +135,7 @@ export default function ProfilePage() {
                       </span>
                     ))
                   ) : (
-                    <p className="text-muted-foreground">No brands selected</p>
+                    <p className="text-muted-foreground">Бренды не выбраны</p>
                   )}
                 </div>
               </div>
@@ -143,7 +143,7 @@ export default function ProfilePage() {
               <Button asChild>
                 <Link href="/profile/preferences">
                   <Settings className="mr-2 h-4 w-4" />
-                  Update Preferences
+                  Обновить предпочтения
                 </Link>
               </Button>
             </CardContent>
@@ -154,27 +154,27 @@ export default function ProfilePage() {
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
+              <CardTitle>Быстрые действия</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <Button variant="outline" className="w-full justify-start" asChild>
                 <Link href="/cart">
                   <ShoppingBag className="mr-2 h-4 w-4" />
-                  View Cart
+                  Просмотреть корзину
                 </Link>
               </Button>
               
               <Button variant="outline" className="w-full justify-start" asChild>
                 <Link href="/chat">
                   <MessageCircle className="mr-2 h-4 w-4" />
-                  AI Assistant
+                  AI помощник
                 </Link>
               </Button>
               
               <Button variant="outline" className="w-full justify-start" asChild>
                 <Link href="/profile/preferences">
                   <Settings className="mr-2 h-4 w-4" />
-                  Settings
+                  Настройки
                 </Link>
               </Button>
             </CardContent>
@@ -182,26 +182,26 @@ export default function ProfilePage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Account Stats</CardTitle>
+              <CardTitle>Статистика аккаунта</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="text-center">
                 <p className="text-2xl font-bold">0</p>
-                <p className="text-sm text-muted-foreground">Orders Placed</p>
+                <p className="text-sm text-muted-foreground">Совершено заказов</p>
               </div>
               
               <Separator />
               
               <div className="text-center">
                 <p className="text-2xl font-bold">$0.00</p>
-                <p className="text-sm text-muted-foreground">Total Spent</p>
+                <p className="text-sm text-muted-foreground">Всего потрачено</p>
               </div>
               
               <Separator />
               
               <div className="text-center">
                 <p className="text-2xl font-bold">0</p>
-                <p className="text-sm text-muted-foreground">Chat Sessions</p>
+                <p className="text-sm text-muted-foreground">Сессий чата</p>
               </div>
             </CardContent>
           </Card>

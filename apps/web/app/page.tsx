@@ -40,24 +40,24 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-radial from-green-900 via-green-900/40 to-transparent z-5"></div>
         <div className="container max-w-4xl relative z-10">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
-            Fresh from Local Farms
+            Свежие продукты от местных ферм
           </h1>
           <p className="text-xl text-foreground mb-8 max-w-2xl mx-auto">
-            Discover farm-fresh products delivered straight to your table. Support
-            local farmers and enjoy the finest organic, seasonal, and sustainably
-            grown food.
+            Откройте для себя свежие фермерские продукты прямо к вашему столу. Поддерживайте
+            местных производителей и наслаждайтесь лучшими органическими, сезонными
+            и экологически чистыми товарами.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild className="bg-green-600 hover:bg-green-700">
               <Link href="/products">
                 <ShoppingBag className="mr-2 h-5 w-5" />
-                Shop Fresh Products
+                Перейти к товарам
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link href="/farms">
                 <Sprout className="mr-2 h-5 w-5" />
-                Meet Our Farmers
+                Наши фермеры
               </Link>
             </Button>
           </div>
@@ -68,14 +68,14 @@ export default function HomePage() {
       <section className="container px-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-3xl font-bold mb-2">Seasonal Favorites</h2>
+            <h2 className="text-3xl font-bold mb-2">Сезонные товары</h2>
             <p className="text-muted-foreground">
-              Hand-picked selection of the freshest seasonal produce and farm goods
+              Отборные свежие сезонные продукты и фермерские товары
             </p>
           </div>
           <Button variant="outline" asChild>
             <Link href="/products">
-              View All
+              Все товары
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
@@ -87,9 +87,9 @@ export default function HomePage() {
       {/* Why Choose Us Section */}
       <section className="container px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Why Choose Farm Fresh?</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Experience the difference of truly fresh, locally sourced food
+            <h2 className="text-3xl font-bold mb-4">Преимущества</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Откройте для себя преимущество по-настоящему свежих локальных продуктов
           </p>
         </div>
 
@@ -98,10 +98,10 @@ export default function HomePage() {
             <div className="mx-auto h-12 w-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
               <Sprout className="h-6 w-6 text-green-600" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Farm to Table</h3>
+            <h3 className="text-xl font-semibold mb-2">От фермы до стола</h3>
             <p className="text-muted-foreground">
-              Direct from local farms to your doorstep, ensuring maximum freshness
-              and flavor
+              Прямо с местных ферм к вам домой, гарантируя максимальную свежесть
+              и натуральный вкус
             </p>
           </div>
 
@@ -121,10 +121,10 @@ export default function HomePage() {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Certified Organic</h3>
+            <h3 className="text-xl font-semibold mb-2">Сертифицированная органика</h3>
             <p className="text-muted-foreground">
-              All our organic products are certified, ensuring no harmful pesticides
-              or chemicals
+              Все органические товары сертифицированы, без вредных пестицидов
+              и химикатов
             </p>
           </div>
 
@@ -144,10 +144,10 @@ export default function HomePage() {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Support Local</h3>
+            <h3 className="text-xl font-semibold mb-2">Поддержка местных</h3>
             <p className="text-muted-foreground">
-              Every purchase supports local farmers and sustainable agriculture
-              practices
+              Каждая покупка помогает фермерам и развивает устойчивое сельское
+              хозяйство
             </p>
           </div>
         </div>
@@ -158,14 +158,14 @@ export default function HomePage() {
         <PixelAnimation className="z-0" opacity={1} speed={1} />
         <div className="absolute inset-0 bg-gradient-radial from-green-900 via-green-900/30 to-transparent z-5"></div>
         <div className="container px-4 text-center relative z-10">
-          <h2 className="text-3xl font-bold mb-4">Ready to Eat Fresh?</h2>
-          <p className="text-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of customers who trust us for their farm-fresh food needs
+            <h2 className="text-3xl font-bold mb-4">Готовы попробовать свежесть?</h2>
+            <p className="text-foreground mb-8 max-w-2xl mx-auto">
+              Присоединяйтесь к тысячам покупателей, которые выбирают фермерские продукты
           </p>
           <Button size="lg" asChild className="bg-green-600 hover:bg-green-700">
             <Link href="/products">
               <ShoppingBag className="h-5 w-5" />
-              Start Shopping
+              Начать покупки
             </Link>
           </Button>
         </div>

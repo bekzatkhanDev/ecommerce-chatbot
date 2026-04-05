@@ -35,19 +35,19 @@ export default function RegisterPage() {
     const newErrors: Record<string, string> = {};
 
     if (formData.name.length < 2) {
-      newErrors.name = "Name must be at least 2 characters";
+      newErrors.name = "Имя должно быть не менее 2 символов";
     }
 
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+      newErrors.email = "Пожалуйста, введите корректный email";
     }
 
     if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+      newErrors.password = "Пароль должен быть не менее 6 символов";
     }
 
     if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = "Пароли не совпадают";
     }
 
     setErrors(newErrors);
@@ -91,21 +91,21 @@ export default function RegisterPage() {
     <div className="container flex items-center justify-center min-h-[calc(100vh-8rem)] py-8">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Create an account</CardTitle>
+          <CardTitle className="text-2xl">Создать аккаунт</CardTitle>
           <CardDescription>
-            Join S-TORE to start shopping with AI assistance
+            Присоединяйтесь к S-TORE для покупок с помощью ИИ
           </CardDescription>
         </CardHeader>
 
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
+              <Label htmlFor="name">Полное имя</Label>
               <Input
                 id="name"
                 name="name"
                 type="text"
-                placeholder="Enter your full name"
+                placeholder="Введите ваше полное имя"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -121,7 +121,7 @@ export default function RegisterPage() {
                 id="email"
                 name="email"
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Введите ваш email"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -132,13 +132,13 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Пароль</Label>
               <div className="relative">
                 <Input
                   id="password"
                   name="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Create a password"
+                  placeholder="Создайте пароль"
                   value={formData.password}
                   onChange={handleChange}
                   required
@@ -163,12 +163,12 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Label htmlFor="confirmPassword">Подтвердите пароль</Label>
               <Input
                 id="confirmPassword"
                 name="confirmPassword"
                 type="password"
-                placeholder="Confirm your password"
+                placeholder="Подтвердите ваш пароль"
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 required
@@ -183,22 +183,22 @@ export default function RegisterPage() {
 
           <CardFooter className="flex flex-col space-y-4">
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Creating account..." : "Create Account"}
+              {loading ? "Создание аккаунта..." : "Создать аккаунт"}
             </Button>
 
             <div className="relative w-full">
               <Separator />
               <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-2 text-xs text-muted-foreground">
-                or
+                или
               </span>
             </div>
 
             <div className="text-center text-sm">
               <span className="text-muted-foreground">
-                Already have an account?{" "}
+                Уже есть аккаунт?{" "}
               </span>
               <Link href="/login" className="text-primary hover:underline">
-                Sign in
+                Войти
               </Link>
             </div>
           </CardFooter>

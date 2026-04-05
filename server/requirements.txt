@@ -5,9 +5,10 @@ flask-cors
 flask-migrate
 python-dotenv
 pinecone-client
-langchain
-langchain-google-genai
-langchain-pinecone
+langchain==0.3.25
+langchain-core>=0.3.58,<0.4.0
+langchain-google-genai==2.1.5
+langchain-pinecone==0.2.8
 # google-genai
 werkzeug
 sentence-transformers

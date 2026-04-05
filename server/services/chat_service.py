@@ -4,10 +4,10 @@ import uuid
 from typing import Any, Dict, List, Optional
 
 from flask import current_app
-from langchain.agents import AgentType, initialize_agent
+from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain.memory import ConversationBufferWindowMemory
-from langchain.schema import AIMessage, HumanMessage, SystemMessage
-from langchain.tools import Tool
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.tools import Tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from models.chat_session import ChatSession
 from models.message import Message
@@ -35,11 +35,10 @@ class ChatService:
         """Initialize LangChain components"""
         try:
             self.llm = ChatGoogleGenerativeAI(
-                model="gemini-2.0-flash",
+                model="gemini-2.5-flash",
                 google_api_key=current_app.config["GOOGLE_API_KEY"],
                 temperature=0.7,
                 max_tokens=1000,
-                convert_system_message_to_human=True,
             )
 
             self.vector_service.initialize()
@@ -102,7 +101,7 @@ class ChatService:
             if not similar_products:
                 return json.dumps(
                     {
-                        "message": "No products found for the given query.",
+                        "message": "По вашему запросу товары не найдены.",
                         "product_ids": [],
                     }
                 )
@@ -110,7 +109,7 @@ class ChatService:
             product_ids = [p["id"] for p in similar_products]
             products = Product.query.filter(Product.id.in_(product_ids)).all()
 
-            result = "Found the following products:\n"
+            result = "Найдены следующие товары:\n"
             for product in products:
                 result += f"- {product.name} by {product.brand} - ${product.price}\n"
                 result += f"  {product.description[:100]}...\n"
@@ -135,7 +134,7 @@ class ChatService:
             if not products:
                 return json.dumps(
                     {
-                        "message": "No products found matching the specified filters.",
+                        "message": "Товары, соответствующие указанным фильтрам, не найдены.",
                         "product_ids": [],
                     }
                 )
@@ -161,7 +160,7 @@ class ChatService:
         try:
             product = Product.query.get(product_id.strip())
             if not product:
-                return "Product not found."
+                return "Товар не найден."
 
             result = "Product Details:\n"
             result += f"Name: {product.name}\n"
@@ -343,27 +342,21 @@ class ChatService:
                         chat_history.append(msg)
 
             tools = self.create_tools()
-            agent = initialize_agent(
-                tools=tools,
-                llm=self.llm,
-                agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
-                memory=memory,
-                verbose=True,
-                handle_parsing_errors=True,
-            )
-
-            system_prompt = """You are Storey, an AI shopping assistant for an electronics e-commerce store.
-            You help customers find the perfect tech products based on their needs and preferences.   
+            
+            # Create the prompt template for the agent
+            system_prompt = """You are Farmy, an AI shopping assistant for a farm-fresh e-commerce store.
+            You help customers find the perfect farm-fresh products based on their needs and preferences.   
 
             Guidelines:            
-            - Be helpful, friendly, and knowledgeable about technology products
+            - Be helpful, friendly, and knowledgeable about farm products
             - Use the available tools to search for products, get details, and make recommendations
             - Always provide specific product suggestions when possible
             - Include prices, ratings, and key features in your responses
             - Ask clarifying questions if the user's request is unclear
-            - Focus on electronics categories: smartphones, laptops, headphones, gaming equipment, smart home devices
+            - Focus on farm categories: produce, dairy & eggs, meat, bakery, pantry, seasonal items
             - When a user wants to add a product to cart, use the add_to_cart tool with the product name or ID
             - If the user says "add this to cart" or similar, use the product name from your most recent message
+            - Highlight organic, local, and seasonal products when relevant
 
             Available tools:
             - search_products: Find products using semantic search. Input: search query (str).
@@ -373,13 +366,33 @@ class ChatService:
             - add_to_cart: Add a product to the user's cart. Input: JSON string with keys: product_id (str or product name), quantity (int, optional, default 1).
             """
 
-            agent_input = {"input": f"{system_prompt}\n\nUser: {user_message}"}
-            result = agent(agent_input)
-            ai_response = (
-                result["output"]
-                if isinstance(result, dict) and "output" in result
-                else result
+            prompt = ChatPromptTemplate.from_messages([
+                ("system", system_prompt),
+                MessagesPlaceholder(variable_name="chat_history"),
+                ("human", "{input}"),
+                MessagesPlaceholder(variable_name="agent_scratchpad"),
+            ])
+
+            # Create the agent
+            agent = create_tool_calling_agent(
+                llm=self.llm,
+                tools=tools,
+                prompt=prompt,
             )
+
+            # Create the agent executor
+            agent_executor = AgentExecutor(
+                agent=agent,
+                tools=tools,
+                memory=memory,
+                verbose=True,
+                handle_parsing_errors=True,
+                max_iterations=3,
+            )
+
+            # Run the agent
+            result = agent_executor.invoke({"input": user_message})
+            ai_response = result.get("output", "")
 
             product_ids = []
             if isinstance(result, dict) and "intermediate_steps" in result:

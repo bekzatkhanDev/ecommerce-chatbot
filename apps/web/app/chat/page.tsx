@@ -37,7 +37,7 @@ export default function ChatPage() {
             id: "welcome",
             chatSessionId: sessionId,
             content:
-              "Hello! I'm your AI shopping assistant. I can help you find products, answer questions, and add items to your cart. What are you looking for today?",
+              "Здравствуйте! Я ваш ИИ-ассистент по покупкам. Я помогу вам найти товары, отвечу на вопросы и добавлю товары в корзину. Что вы ищете сегодня?",
             isBot: true,
             type: "text",
             products: [],
@@ -132,7 +132,7 @@ export default function ChatPage() {
             id: "welcome",
             chatSessionId: currentSessionId,
             content:
-              "Hello! I'm your AI shopping assistant. I can help you find products, answer questions, and add items to your cart. What are you looking for today?",
+              "Здравствуйте! Я ваш ИИ-ассистент по покупкам. Я помогу вам найти товары, отвечу на вопросы и добавлю товары в корзину. Что вы ищете сегодня?",
             isBot: true,
             type: "text",
             products: [],
@@ -155,7 +155,7 @@ export default function ChatPage() {
         id: "welcome",
         chatSessionId: sessionId,
         content:
-          "Hello! I'm your AI shopping assistant. I can help you find products, answer questions, and add items to your cart. What are you looking for today?",
+              "Здравствуйте! Я ваш ИИ-ассистент по покупкам. Я помогу вам найти товары, отвечу на вопросы и добавлю товары в корзину. Что вы ищете сегодня?",
         isBot: true,
         type: "text",
         products: [],
@@ -180,9 +180,9 @@ export default function ChatPage() {
           createNewSession();
         }
       }
-      toast("Session deleted");
+      toast("Сессия удалена");
     } catch (error) {
-      toast.error("Failed to delete session");
+      toast.error("Не удалось удалить сессию");
     }
   };
 
@@ -216,7 +216,7 @@ export default function ChatPage() {
         }
       }
     } catch (error) {
-      toast.error("Failed to send message");
+      toast.error("Не удалось отправить сообщение");
       console.error("Failed to send message:", error);
     } finally {
       setLoading(false);
@@ -286,7 +286,7 @@ export default function ChatPage() {
           <Card className="h-full chat-card flex flex-col shadow-xl border-r">
             <CardHeader className="pb-3 flex-shrink-0">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg">Chat Sessions</CardTitle>
+               <CardTitle className="text-lg">Сессии чата</CardTitle>
                 <Button size="sm" onClick={createNewSession}>
                   <Plus className="h-4 w-4" />
                 </Button>
@@ -296,13 +296,13 @@ export default function ChatPage() {
               <ScrollArea className="h-full">
                 <div className="space-y-2 p-4">
                   {loadingSessions ? (
-                    <div className="text-center text-muted-foreground">
-                      Loading...
-                    </div>
+                     <div className="text-center text-muted-foreground">
+                       Загрузка...
+                     </div>
                   ) : sessions.length === 0 ? (
-                    <div className="text-center text-muted-foreground">
-                      No sessions yet
-                    </div>
+                     <div className="text-center text-muted-foreground">
+                       Сессий пока нет
+                     </div>
                   ) : (
                     sessions.map((session) => (
                       <div
@@ -322,12 +322,12 @@ export default function ChatPage() {
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium truncate">
-                              Session {session.id.slice(-8)}
-                            </p>
-                            <p className="text-xs text-muted-foreground">
-                              {session.messageCount} messages
-                            </p>
+                             <p className="text-sm font-medium truncate">
+                               Сессия {session.id.slice(-8)}
+                             </p>
+                             <p className="text-xs text-muted-foreground">
+                               {session.messageCount} сообщений
+                             </p>
                           </div>
                           <Button
                             size="sm"
@@ -360,9 +360,9 @@ export default function ChatPage() {
                 <Bot className="h-5 w-5" />
               </div>
               {user && (
-                <span className="text-xs border-2 border-dashed border-blue-200/30 px-2 py-1 rounded-full ml-auto">
-                  Hover left edge for sessions
-                </span>
+                   <span className="text-xs border-2 border-dashed border-blue-200/30 px-2 py-1 rounded-full ml-auto">
+                     Наведите на левый край для списка сессий
+                   </span>
               )}
             </CardTitle>
           </CardHeader>

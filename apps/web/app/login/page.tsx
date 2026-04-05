@@ -51,10 +51,10 @@ export default function LoginPage() {
     <div className="container flex items-center justify-center min-h-[calc(100vh-8rem)] py-8">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Welcome back</CardTitle>
-          <CardDescription>
-            Sign in to your account to continue shopping
-          </CardDescription>
+           <CardTitle className="text-2xl">Рады вас видеть снова</CardTitle>
+           <CardDescription>
+             Войдите в свою учетную запись, чтобы продолжить покупки
+           </CardDescription>
         </CardHeader>
 
         <form onSubmit={handleSubmit}>
@@ -65,7 +65,7 @@ export default function LoginPage() {
                 id="email"
                 name="email"
                 type="email"
-                placeholder="Enter your email"
+                 placeholder="Введите ваш email"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -79,7 +79,7 @@ export default function LoginPage() {
                   id="password"
                   name="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter your password"
+                 placeholder="Введите ваш пароль"
                   value={formData.password}
                   onChange={handleChange}
                   required
@@ -103,22 +103,22 @@ export default function LoginPage() {
 
           <CardFooter className="flex flex-col space-y-4">
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Signing in..." : "Sign In"}
+               {loading ? "Вход..." : "Войти"}
             </Button>
 
             <div className="relative w-full">
               <Separator />
               <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-2 text-xs text-muted-foreground">
-                or
+                 или
               </span>
             </div>
 
             <div className="text-center text-sm">
               <span className="text-muted-foreground">
-                Don't have an account?{" "}
+                 Нет учетной записи?{" "}
               </span>
               <Link href="/register" className="text-primary hover:underline">
-                Sign up
+                 Зарегистрироваться
               </Link>
             </div>
           </CardFooter>

@@ -42,7 +42,7 @@ export default function CartPage() {
       setCartItems(response.data);
     } catch (error) {
       console.error("Failed to fetch cart:", error);
-      toast.error("Failed to load cart");
+      toast.error("Не удалось загрузить корзину");
     } finally {
       setLoading(false);
     }
@@ -66,9 +66,9 @@ export default function CartPage() {
           item.id === itemId ? { ...item, quantity: newQuantity } : item
         )
       );
-      toast("Cart updated!");
+      toast("Корзина обновлена!");
     } catch (error) {
-      toast.error("Failed to update quantity");
+      toast.error("Не удалось изменить количество");
     }
   };
 
@@ -82,9 +82,9 @@ export default function CartPage() {
       });
 
       setCartItems(cartItems.filter((item) => item.id !== itemId));
-      toast("Item removed from cart");
+      toast("Товар удален из корзины");
     } catch (error) {
-      toast.error("Failed to remove item from cart");
+      toast.error("Не удалось удалить товар из корзины");
     }
   };
 
@@ -104,12 +104,12 @@ export default function CartPage() {
         <Card className="max-w-md mx-auto text-center">
           <CardContent className="pt-6">
             <ShoppingBag className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-            <h2 className="text-xl font-semibold mb-2">Please Login</h2>
+            <h2 className="text-xl font-semibold mb-2">Войдите в систему</h2>
             <p className="text-muted-foreground mb-4">
-              You need to be logged in to view your cart.
+              Для просмотра корзины необходимо авторизоваться.
             </p>
             <Button asChild>
-              <Link href="/login">Login</Link>
+              <Link href="/login">Войти</Link>
             </Button>
           </CardContent>
         </Card>
@@ -134,12 +134,12 @@ export default function CartPage() {
         <Card className="max-w-md mx-auto text-center">
           <CardContent className="pt-6">
             <ShoppingBag className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-            <h2 className="text-xl font-semibold mb-2">Your cart is empty</h2>
+            <h2 className="text-xl font-semibold mb-2">Ваша корзина пуста</h2>
             <p className="text-muted-foreground mb-4">
-              Start shopping to add items to your cart.
+              Начните покупки, чтобы добавить товары в корзину.
             </p>
             <Button asChild>
-              <Link href="/products">Browse Products</Link>
+              <Link href="/products">Перейти к товарам</Link>
             </Button>
           </CardContent>
         </Card>
@@ -150,10 +150,9 @@ export default function CartPage() {
   return (
     <div className="container py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Shopping Cart</h1>
+        <h1 className="text-3xl font-bold mb-2">Корзина</h1>
         <p className="text-muted-foreground">
-          {getTotalItems()} {getTotalItems() === 1 ? "item" : "items"} in your
-          cart
+          В корзине {getTotalItems()} {getTotalItems() === 1 ? "товар" : getTotalItems() < 5 ? "товара" : "товаров"}
         </p>
       </div>
 
@@ -162,16 +161,16 @@ export default function CartPage() {
         <div className="lg:col-span-2">
           <Card>
             <CardHeader>
-              <CardTitle>Cart Items</CardTitle>
+              <CardTitle>Товары в корзине</CardTitle>
             </CardHeader>
             <CardContent className="p-0">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Product</TableHead>
-                    <TableHead>Price</TableHead>
-                    <TableHead>Quantity</TableHead>
-                    <TableHead>Total</TableHead>
+                    <TableHead>Товар</TableHead>
+                    <TableHead>Цена</TableHead>
+                    <TableHead>Количество</TableHead>
+                    <TableHead>Итого</TableHead>
                     <TableHead></TableHead>
                   </TableRow>
                 </TableHeader>
@@ -259,20 +258,20 @@ export default function CartPage() {
         <div className="lg:col-span-1">
           <Card>
             <CardHeader>
-              <CardTitle>Order Summary</CardTitle>
+              <CardTitle>Сумма заказа</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span>Subtotal</span>
+                  <span>Подытог</span>
                   <span>{formatPrice(getTotalPrice())}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Shipping</span>
-                  <span>Free</span>
+                  <span>Доставка</span>
+                  <span>Бесплатно</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Tax</span>
+                  <span>Налог</span>
                   <span>{formatPrice(getTotalPrice() * 0.08)}</span>
                 </div>
               </div>
@@ -280,16 +279,16 @@ export default function CartPage() {
               <Separator />
 
               <div className="flex justify-between font-semibold text-lg">
-                <span>Total</span>
+                  <span>Итого</span>
                 <span>{formatPrice(getTotalPrice() * 1.08)}</span>
               </div>
 
               <Button className="w-full" size="lg">
-                Proceed to Checkout
+                Перейти к оформлению
               </Button>
 
               <Button variant="outline" className="w-full" asChild>
-                <Link href="/products">Continue Shopping</Link>
+                <Link href="/products">Продолжить покупки</Link>
               </Button>
             </CardContent>
           </Card>
