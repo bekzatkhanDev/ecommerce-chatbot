@@ -34,7 +34,7 @@ export function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="Ask me about products, get recommendations, or add items to your cart..."
+        placeholder="Спросите о товарах, получите рекомендации или добавьте товары в корзину..."
         className="min-h-[60px] resize-none"
         disabled={disabled}
       />

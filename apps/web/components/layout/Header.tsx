@@ -41,13 +41,13 @@ export function Header() {
               href="/products"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              Products
+              Товары
             </Link>
             <Link
               href="/chat"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              AI Assistant
+              ИИ Ассистент
             </Link>
           </nav>
         </div>
@@ -95,19 +95,19 @@ export function Header() {
                   <DropdownMenuItem asChild>
                     <Link href="/profile">
                       <User className="mr-2 h-4 w-4" />
-                      <span>Profile</span>
+                      <span>Профиль</span>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link href="/profile/preferences">
                       <Settings className="mr-2 h-4 w-4" />
-                      <span>Preferences</span>
+                      <span>Предпочтения</span>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={logout}>
                     <LogOut className="mr-2 h-4 w-4" />
-                    <span>Log out</span>
+                    <span>Выйти</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -115,10 +115,10 @@ export function Header() {
           ) : (
             <div className="flex items-center space-x-2">
               <Button variant="ghost" asChild>
-                <Link href="/login">Login</Link>
+                <Link href="/login">Войти</Link>
               </Button>
               <Button asChild>
-                <Link href="/register">Sign Up</Link>
+                <Link href="/register">Регистрация</Link>
               </Button>
             </div>
           )}

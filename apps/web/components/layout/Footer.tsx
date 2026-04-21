@@ -16,20 +16,19 @@ export function Footer() {
               <span className="font-bold">TORE</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Your one-stop shop for the latest technology products with
-              AI-powered assistance.
+              Свежие фермерские продукты с доставкой прямо к вашему столу с помощью ИИ-ассистента.
             </p>
           </div>
 
           <div className="space-y-3">
-            <h4 className="text-sm font-semibold">Products</h4>
+            <h4 className="text-sm font-semibold">Товары</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link
                   href="/products?category=Electronics"
                   className="hover:text-foreground"
                 >
-                  Electronics
+                  Овощи и фрукты
                 </Link>
               </li>
               <li>
@@ -37,7 +36,7 @@ export function Footer() {
                   href="/products?category=Smartphones"
                   className="hover:text-foreground"
                 >
-                  Smartphones
+                  Молочные продукты
                 </Link>
               </li>
               <li>
@@ -45,7 +44,7 @@ export function Footer() {
                   href="/products?category=Laptops"
                   className="hover:text-foreground"
                 >
-                  Laptops
+                  Мясо и птица
                 </Link>
               </li>
               <li>
@@ -53,59 +52,59 @@ export function Footer() {
                   href="/products?category=Gaming"
                   className="hover:text-foreground"
                 >
-                  Gaming
+                  Сезонные товары
                 </Link>
               </li>
             </ul>
           </div>
 
           <div className="space-y-3">
-            <h4 className="text-sm font-semibold">Support</h4>
+            <h4 className="text-sm font-semibold">Поддержка</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/chat" className="hover:text-foreground">
-                  AI Assistant
+                  ИИ Ассистент
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-foreground">
-                  Help Center
+                  Центр помощи
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-foreground">
-                  Contact Us
+                  Связаться с нами
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-foreground">
-                  Returns
+                  Возврат товаров
                 </Link>
               </li>
             </ul>
           </div>
 
           <div className="space-y-3">
-            <h4 className="text-sm font-semibold">Company</h4>
+            <h4 className="text-sm font-semibold">Компания</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="#" className="hover:text-foreground">
-                  About
+                  О нас
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-foreground">
-                  Privacy
+                  Конфиденциальность
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-foreground">
-                  Terms
+                  Условия использования
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-foreground">
-                  Careers
+                  Вакансии
                 </Link>
               </li>
             </ul>
@@ -115,8 +114,8 @@ export function Footer() {
         <Separator className="my-6" />
 
         <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground">
-          <p>&copy; 2024 S-TORE. All rights reserved.</p>
-          <p>Built with Next.js and Shadcn UI</p>
+          <p>&copy; 2024 S-TORE. Все права защищены.</p>
+          <p>Создано на Next.js и Shadcn UI</p>
         </div>
       </div>
     </footer>

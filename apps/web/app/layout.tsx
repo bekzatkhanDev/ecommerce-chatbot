@@ -10,9 +10,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Farm Fresh - Farm-to-Table E-commerce",
+  title: "Фермерский магазин — свежие продукты",
   description:
-    "Discover farm-fresh products delivered straight to your table. Support local farmers and enjoy the finest organic, seasonal, and sustainably grown food.",
+    "Откройте для себя свежие фермерские продукты с доставкой прямо к вашему столу. Поддержите местных фермеров и наслаждайтесь лучшими органическими и сезонными продуктами.",
 };
 
 export default function RootLayout({

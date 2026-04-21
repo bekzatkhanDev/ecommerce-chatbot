@@ -86,9 +86,9 @@ export function ProductFilters({
     <Card className="sticky top-20">
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle>Filters</CardTitle>
+          <CardTitle>Фильтры</CardTitle>
           <Button variant="ghost" size="sm" onClick={clearFilters}>
-            Clear All
+            Сбросить
           </Button>
         </div>
       </CardHeader>
@@ -96,9 +96,9 @@ export function ProductFilters({
       <CardContent className="space-y-6">
         {/* Search */}
         <div className="space-y-2">
-          <Label>Search</Label>
+          <Label>Поиск</Label>
           <Input
-            placeholder="Search products..."
+            placeholder="Поиск товаров..."
             value={filters.search || ""}
             onChange={(e) => handleFilterChange("search", e.target.value)}
           />
@@ -108,7 +108,7 @@ export function ProductFilters({
 
         {/* Category */}
         <div className="space-y-2">
-          <Label>Category</Label>
+          <Label>Категория</Label>
           <Select
             value={filters.category || ""}
             onValueChange={(value) => {
@@ -117,10 +117,10 @@ export function ProductFilters({
             }}
           >
             <SelectTrigger>
-              <SelectValue placeholder="All Categories" />
+              <SelectValue placeholder="Все категории" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="All Categories">All Categories</SelectItem>
+              <SelectItem value="All Categories">Все категории</SelectItem>
               {categories.map((category) => (
                 <SelectItem key={category.category} value={category.category}>
                   {category.category}
@@ -133,7 +133,7 @@ export function ProductFilters({
         {/* Subcategory */}
         {selectedCategory && (
           <div className="space-y-2">
-            <Label>Subcategory</Label>
+            <Label>Подкатегория</Label>
             <Select
               value={filters.subcategory || ""}
               onValueChange={(value) =>
@@ -141,11 +141,11 @@ export function ProductFilters({
               }
             >
               <SelectTrigger>
-                <SelectValue placeholder="All Subcategories" />
+                <SelectValue placeholder="Все подкатегории" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="All Subcategories">
-                  All Subcategories
+                  Все подкатегории
                 </SelectItem>
                 {selectedCategory.subcategories.map((subcategory) => (
                   <SelectItem key={subcategory} value={subcategory}>
@@ -159,16 +159,16 @@ export function ProductFilters({
 
         {/* Brand */}
         <div className="space-y-2">
-          <Label>Brand</Label>
+          <Label>Бренд</Label>
           <Select
             value={filters.brand || ""}
             onValueChange={(value) => handleFilterChange("brand", value)}
           >
             <SelectTrigger>
-              <SelectValue placeholder="All Brands" />
+              <SelectValue placeholder="Все бренды" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="All Brands">All Brands</SelectItem>
+              <SelectItem value="All Brands">Все бренды</SelectItem>
               {brands.map((brand) => (
                 <SelectItem key={brand} value={brand}>
                   {brand}
@@ -182,7 +182,7 @@ export function ProductFilters({
 
         {/* Price Range */}
         <div className="space-y-4">
-          <Label>Price Range</Label>
+          <Label>Диапазон цен</Label>
           <Slider
             value={priceRange}
             onValueChange={handlePriceChange}
@@ -199,7 +199,7 @@ export function ProductFilters({
 
         {/* Rating */}
         <div className="space-y-2">
-          <Label>Minimum Rating</Label>
+          <Label>Минимальный рейтинг</Label>
           <Select
             value={filters.min_rating?.toString() || ""}
             onValueChange={(value) =>
@@ -210,14 +210,14 @@ export function ProductFilters({
             }
           >
             <SelectTrigger>
-              <SelectValue placeholder="Any Rating" />
+              <SelectValue placeholder="Любой рейтинг" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="Any Rating">Any Rating</SelectItem>
-              <SelectItem value="4">4+ Stars</SelectItem>
-              <SelectItem value="3">3+ Stars</SelectItem>
-              <SelectItem value="2">2+ Stars</SelectItem>
-              <SelectItem value="1">1+ Stars</SelectItem>
+              <SelectItem value="Any Rating">Любой рейтинг</SelectItem>
+              <SelectItem value="4">4+ звёзд</SelectItem>
+              <SelectItem value="3">3+ звёзд</SelectItem>
+              <SelectItem value="2">2+ звёзд</SelectItem>
+              <SelectItem value="1">1+ звезда</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -234,7 +234,7 @@ export function ProductFilters({
             className="rounded border-gray-300"
           />
           <Label htmlFor="in-stock" className="text-sm">
-            In stock only
+            Только в наличии
           </Label>
         </div>
       </CardContent>

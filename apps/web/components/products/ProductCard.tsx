@@ -26,7 +26,7 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
   if (!product || !product.id) {
     return (
       <Card className="h-full flex items-center justify-center p-4">
-        <p className="text-sm text-muted-foreground">Product unavailable</p>
+        <p className="text-sm text-muted-foreground">Товар недоступен</p>
       </Card>
     );
   }
@@ -71,7 +71,7 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
     e.stopPropagation();
 
     if (!user) {
-      toast.error("Please login to like products");
+      toast.error("Войдите, чтобы добавить в избранное");
       return;
     }
 
@@ -86,7 +86,7 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
         toast(response.data.message);
       }
     } catch (error) {
-      toast.error("Failed to update like status");
+      toast.error("Не удалось обновить статус избранного");
     }
   };
 
@@ -96,7 +96,7 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
 
     const shareData = {
       title: product.name,
-      text: `Check out this fresh ${product.name} from ${product.brand}!`,
+      text: `Посмотрите на свежий ${product.name} от ${product.brand}!`,
       url: window.location.origin + `/products/${product.id}`,
     };
 
@@ -106,15 +106,15 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
       } else {
         // Fallback to clipboard
         await navigator.clipboard.writeText(shareData.url);
-        toast("Product link copied to clipboard!");
+        toast("Ссылка скопирована в буфер обмена!");
       }
     } catch (error) {
       // Fallback to clipboard
       try {
         await navigator.clipboard.writeText(shareData.url);
-        toast("Product link copied to clipboard!");
+        toast("Ссылка скопирована в буфер обмена!");
       } catch (clipboardError) {
-        toast.error("Failed to share product");
+        toast.error("Не удалось поделиться товаром");
       }
     }
   };
@@ -124,7 +124,7 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
     e.stopPropagation();
 
     if (!user) {
-      toast.error("Please login to add items to cart");
+      toast.error("Войдите, чтобы добавить товар в корзину");
       return;
     }
 
@@ -134,16 +134,16 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
         product_id: product.id,
         quantity: 1,
       });
-      toast("Added to cart!");
+      toast("Добавлено в корзину!");
     } catch (error) {
-      toast.error("Failed to add to cart");
+      toast.error("Не удалось добавить в корзину");
     }
   };
 
   // Format harvest date for display
   const formatHarvestDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    return date.toLocaleDateString("ru-RU", { month: "short", day: "numeric" });
   };
 
   return (
@@ -179,7 +179,7 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
               variant="secondary"
               className={`absolute top-2 right-2 ${isCompact ? "text-xs" : ""}`}
             >
-              Out of Stock
+              Нет в наличии
             </Badge>
           )}
           {/* Organic Badge */}
@@ -188,7 +188,7 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
               className="absolute top-2 right-2 bg-green-600 hover:bg-green-700 text-white"
             >
               <Sprout className="h-3 w-3 mr-1" />
-              Organic
+              Органик
             </Badge>
           )}
           {/* Seasonal Badge */}
@@ -233,7 +233,7 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
           {product.harvestDate && (
             <div className="flex items-center text-xs text-green-600">
               <Calendar className="h-3 w-3 mr-1" />
-              Harvested: {formatHarvestDate(product.harvestDate)}
+              Собрано: {formatHarvestDate(product.harvestDate)}
             </div>
           )}
 
@@ -294,7 +294,7 @@ export function ProductCard({ product, size = "default" }: ProductCardProps) {
                 />
               )}
 
-              {product.inStock !== false ? "Add to Cart" : "Out of Stock"}
+              {product.inStock !== false ? "В корзину" : "Нет в наличии"}
             </Button>
 
             <Button

@@ -24,11 +24,11 @@ export function HarvestInfo({
     const diffTime = Math.abs(now.getTime() - date.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-    if (diffDays === 0) return "Today";
-    if (diffDays === 1) return "Yesterday";
-    if (diffDays <= 7) return `${diffDays} days ago`;
+    if (diffDays === 0) return "Сегодня";
+    if (diffDays === 1) return "Вчера";
+    if (diffDays <= 7) return `${diffDays} дн. назад`;
 
-    return date.toLocaleDateString("en-US", {
+    return date.toLocaleDateString("ru-RU", {
       month: "short",
       day: "numeric",
     });
@@ -40,10 +40,10 @@ export function HarvestInfo({
     const diffTime = Math.abs(now.getTime() - date.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-    if (diffDays <= 2) return { level: "peak", label: "Peak Freshness", color: "text-green-600" };
-    if (diffDays <= 5) return { level: "fresh", label: "Very Fresh", color: "text-green-500" };
-    if (diffDays <= 10) return { level: "good", label: "Fresh", color: "text-yellow-600" };
-    return { level: "ok", label: "Good", color: "text-orange-600" };
+    if (diffDays <= 2) return { level: "peak", label: "Максимальная свежесть", color: "text-green-600" };
+    if (diffDays <= 5) return { level: "fresh", label: "Очень свежий", color: "text-green-500" };
+    if (diffDays <= 10) return { level: "good", label: "Свежий", color: "text-yellow-600" };
+    return { level: "ok", label: "Хороший", color: "text-orange-600" };
   };
 
   const freshness = harvestDate ? getFreshnessLevel(harvestDate) : null;
@@ -55,7 +55,7 @@ export function HarvestInfo({
           {showIcon && (
             <Calendar className={cn("mr-1.5", compact ? "h-3 w-3" : "h-4 w-4")} />
           )}
-          <span className="text-muted-foreground">Harvested: </span>
+          <span className="text-muted-foreground">Собрано: </span>
           <span className={cn("ml-1 font-medium", freshness?.color)}>
             {formatHarvestDate(harvestDate)}
           </span>
@@ -117,16 +117,16 @@ function getFreshnessData(dateString: string) {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   if (diffDays <= 2) {
-    return { score: 5, label: "Peak Freshness", color: "text-green-600", bgColor: "bg-green-500" };
+    return { score: 5, label: "Максимальная свежесть", color: "text-green-600", bgColor: "bg-green-500" };
   }
   if (diffDays <= 5) {
-    return { score: 4, label: "Very Fresh", color: "text-green-500", bgColor: "bg-green-400" };
+    return { score: 4, label: "Очень свежий", color: "text-green-500", bgColor: "bg-green-400" };
   }
   if (diffDays <= 10) {
-    return { score: 3, label: "Fresh", color: "text-yellow-600", bgColor: "bg-yellow-500" };
+    return { score: 3, label: "Свежий", color: "text-yellow-600", bgColor: "bg-yellow-500" };
   }
   if (diffDays <= 15) {
-    return { score: 2, label: "Good", color: "text-orange-600", bgColor: "bg-orange-500" };
+    return { score: 2, label: "Хороший", color: "text-orange-600", bgColor: "bg-orange-500" };
   }
-  return { score: 1, label: "Acceptable", color: "text-red-600", bgColor: "bg-red-500" };
+  return { score: 1, label: "Приемлемый", color: "text-red-600", bgColor: "bg-red-500" };
 }
