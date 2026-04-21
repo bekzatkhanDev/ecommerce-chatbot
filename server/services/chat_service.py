@@ -202,17 +202,18 @@ class ChatService:
                 ).all()
 
             if not recommendations:
-                return "No recommendations found."
+                return json.dumps({"message": "Рекомендации не найдены.", "product_ids": []})
 
-            result = "Here are some recommendations:\n"
+            result = "Вот несколько рекомендаций:\n"
             for rec in recommendations:
                 result += f"- {rec.name} by {rec.brand} - ${rec.price}\n"
 
-            return result
+            product_ids = [rec.id for rec in recommendations]
+            return json.dumps({"message": result, "product_ids": product_ids})
 
         except Exception as e:
             logger.error(f"Error in get_recommendations_tool: {str(e)}")
-            return "Error occurred while getting recommendations."
+            return json.dumps({"message": "Ошибка при получении рекомендаций.", "product_ids": []})
 
     def _add_to_cart_tool(self, input_json: str) -> str:
         """Tool function to add a product to the user's cart"""
@@ -403,7 +404,7 @@ class ChatService:
                         else None
                     )
                     tool_output = step[1]
-                    if tool_name in ["search_products", "filter_products"]:
+                    if tool_name in ["search_products", "filter_products", "get_recommendations"]:
                         try:
                             parsed = json.loads(tool_output)
                             ids = parsed.get("product_ids", [])

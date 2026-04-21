@@ -26,7 +26,7 @@ class Config:
 
     FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 
-    EMBEDDING_MODEL = "thenlper/gte-large"
+    EMBEDDING_MODEL = "intfloat/multilingual-e5-large"
     EMBEDDING_DIMENSION = 1024
 
 
