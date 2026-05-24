@@ -3,6 +3,7 @@
 import { ProductGrid } from "@/components/products/ProductGrid";
 import { Button } from "@/components/ui/button";
 import { PixelAnimation } from "@/components/ui/PixelAnimation";
+import { useLanguage } from "@/context/LanguageContext";
 import api from "@/lib/api";
 import { Product } from "@/types";
 import { ArrowRight, Sprout, ShoppingBag } from "lucide-react";
@@ -10,6 +11,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function HomePage() {
+  const { t } = useLanguage();
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -40,24 +42,22 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-radial from-green-900 via-green-900/40 to-transparent z-5"></div>
         <div className="container max-w-4xl relative z-10">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
-            Свежие продукты от местных ферм
+            {t('home.heroTitle')}
           </h1>
           <p className="text-xl text-foreground mb-8 max-w-2xl mx-auto">
-            Откройте для себя свежие фермерские продукты прямо к вашему столу. Поддерживайте
-            местных производителей и наслаждайтесь лучшими органическими, сезонными
-            и экологически чистыми товарами.
+            {t('home.heroSubtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild className="bg-green-600 hover:bg-green-700">
               <Link href="/products">
                 <ShoppingBag className="mr-2 h-5 w-5" />
-                Перейти к товарам
+                {t('home.goToProducts')}
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link href="/farms">
                 <Sprout className="mr-2 h-5 w-5" />
-                Наши фермеры
+                {t('home.ourFarmers')}
               </Link>
             </Button>
           </div>
@@ -68,14 +68,12 @@ export default function HomePage() {
       <section className="container px-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-3xl font-bold mb-2">Сезонные товары</h2>
-            <p className="text-muted-foreground">
-              Отборные свежие сезонные продукты и фермерские товары
-            </p>
+            <h2 className="text-3xl font-bold mb-2">{t('home.seasonalTitle')}</h2>
+            <p className="text-muted-foreground">{t('home.seasonalSubtitle')}</p>
           </div>
           <Button variant="outline" asChild>
             <Link href="/products">
-              Все товары
+              {t('home.allProducts')}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
@@ -87,9 +85,9 @@ export default function HomePage() {
       {/* Why Choose Us Section */}
       <section className="container px-4">
         <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Преимущества</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Откройте для себя преимущество по-настоящему свежих локальных продуктов
+          <h2 className="text-3xl font-bold mb-4">{t('home.benefitsTitle')}</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            {t('home.benefitsSubtitle')}
           </p>
         </div>
 
@@ -98,11 +96,8 @@ export default function HomePage() {
             <div className="mx-auto h-12 w-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
               <Sprout className="h-6 w-6 text-green-600" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">От фермы до стола</h3>
-            <p className="text-muted-foreground">
-              Прямо с местных ферм к вам домой, гарантируя максимальную свежесть
-              и натуральный вкус
-            </p>
+            <h3 className="text-xl font-semibold mb-2">{t('home.farmToTable')}</h3>
+            <p className="text-muted-foreground">{t('home.farmToTableDesc')}</p>
           </div>
 
           <div className="text-center p-6 rounded-lg border bg-card">
@@ -121,11 +116,8 @@ export default function HomePage() {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Сертифицированная органика</h3>
-            <p className="text-muted-foreground">
-              Все органические товары сертифицированы, без вредных пестицидов
-              и химикатов
-            </p>
+            <h3 className="text-xl font-semibold mb-2">{t('home.organicCert')}</h3>
+            <p className="text-muted-foreground">{t('home.organicCertDesc')}</p>
           </div>
 
           <div className="text-center p-6 rounded-lg border bg-card">
@@ -144,11 +136,8 @@ export default function HomePage() {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Поддержка местных</h3>
-            <p className="text-muted-foreground">
-              Каждая покупка помогает фермерам и развивает устойчивое сельское
-              хозяйство
-            </p>
+            <h3 className="text-xl font-semibold mb-2">{t('home.supportLocal')}</h3>
+            <p className="text-muted-foreground">{t('home.supportLocalDesc')}</p>
           </div>
         </div>
       </section>
@@ -158,14 +147,14 @@ export default function HomePage() {
         <PixelAnimation className="z-0" opacity={1} speed={1} />
         <div className="absolute inset-0 bg-gradient-radial from-green-900 via-green-900/30 to-transparent z-5"></div>
         <div className="container px-4 text-center relative z-10">
-            <h2 className="text-3xl font-bold mb-4">Готовы попробовать свежесть?</h2>
-            <p className="text-foreground mb-8 max-w-2xl mx-auto">
-              Присоединяйтесь к тысячам покупателей, которые выбирают фермерские продукты
+          <h2 className="text-3xl font-bold mb-4">{t('home.ctaTitle')}</h2>
+          <p className="text-foreground mb-8 max-w-2xl mx-auto">
+            {t('home.ctaSubtitle')}
           </p>
           <Button size="lg" asChild className="bg-green-600 hover:bg-green-700">
             <Link href="/products">
               <ShoppingBag className="h-5 w-5" />
-              Начать покупки
+              {t('home.startShopping')}
             </Link>
           </Button>
         </div>
